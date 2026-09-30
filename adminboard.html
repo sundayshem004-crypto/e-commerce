@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adminboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+</head>
+<body>
+    <header >
+    <div id="admin-board">
+    <div class="admin-button">
+        <button id="overview-btn">Overview</button>
+        <button id="product-btn">Product</button>
+        <button id="order-btn">Order</button>
+        <button class="log-out">Log-out</button>
+        <span class="material-symbols-outlined" id="close-menu">
+close
+</span>
+    </div>
+
+      </div>
+          <span class="material-symbols-outlined" id="menu" >menu</span>
+      
+
+ </header>
+
+ <main class="products">
+    <section class="product-area" id="product-form">
+        <h2>Add New Product</h2>
+         <input type="text" id="product-name" placeholder="product name"><br><br>
+         <input type="number" id="product-price" placeholder="product price" required><br><br>
+         <input type="text" id="category" placeholder="category"><br><br>
+         <input type="file" accept="image/*" id="image"><br><br>
+         <textarea id="bio" cols="23" rows="2" placeholder="product-description"></textarea><br><br>
+         <button id="add-product">ADD PRODUCT</button>
+    </section>
+    <hr>
+
+    <!-- add new production section -->
+
+      <section>
+        <div id="view-product">
+        <h2 class="h33">View Product</h2>
+       </div>
+       <!-- view product section -->
+       <div id="product-review"></div>
+
+    </section>
+
+    <!--product overview  -->
+
+    <section id="overview-section">
+        <h2>Overview</h2>
+        <div class="overview-cards">
+        <div class="cards">
+            <h4>Products</h4>
+            <p id="product-count">0</p>
+        </div>
+        <div class="cards">
+            <h4>Orders</h4>
+            <p id="order-count">0</p>
+        </div>
+        </div>
+    </section>
+
+    <section id="product-section">
+        <h2></h2>
+
+    </section>
+
+    <section id="order-section">
+        <p>eyy</p>
+
+    </section>
+
+    </main>
+
+    
+  
+   <script src="adminboard.js"></script> 
+</body>
+</html>
