@@ -119,7 +119,8 @@ function editproduct(index){
 
     productName.value = product.name;
     productPrice.value = product.price;
-    productCategory.value = product.description;
+    productCategory.value = product.category;
+    productDescription.value = product.description;
 
     addProduct.textContent = "UPDATE PRODUCT"
 
