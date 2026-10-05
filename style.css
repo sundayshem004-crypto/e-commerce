@@ -104,6 +104,7 @@ img:hover{
 }
 .buy-price{
     display: flex;
+    flex-direction: column;
     gap: 10px;
     align-items: center;
     gap: 10px;
@@ -165,6 +166,7 @@ img:hover{
     border-radius: 6px;
     border: none;
     background-color: #2563eb;
+    color: #fff;
     font-family: 'poppins',sans-serif;
     cursor: pointer;
     margin: 5px;
@@ -186,6 +188,7 @@ img:hover{
     padding: 6px 15px;
     border-radius: 6px;
     background-color: #2563eb;
+    color: #fff;
     border: none;
     transition: 0.3s;
 
@@ -198,6 +201,7 @@ img:hover{
     border: none;
     border-radius: 6px;
     background-color: #2563eb;
+    color: #fff;
     transition: 0.3s;
 }
 #place-order:hover{
@@ -512,10 +516,13 @@ input{
         height: 4px;
     }
     .buybtn{
-        padding: 7px 25px;
+        padding: 6px 15px;
         background-color: #b28f6c;
-
-    
+        font-weight: 500;
+        color: #fff;
+    }
+    .buybtn:hover{
+        background-color: aquamarine;
     }
     #cart-count{
         width: 14px;
@@ -527,9 +534,6 @@ input{
     width: 100%;
     max-width: 130px;
     min-width: 0;
-    
-    
-
     }
     input.active{
     width: 150px;
