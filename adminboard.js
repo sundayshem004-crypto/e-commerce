@@ -68,7 +68,7 @@ addProduct.addEventListener('click', function() {
         productImage.value = "";
 
         displayProduct();
-
+        updateProductCount();
         localStorage.setItem("products", JSON.stringify(products));
     };
 
@@ -78,7 +78,7 @@ addProduct.addEventListener('click', function() {
 
 let productReview =document.getElementById("product-review");
 
-
+// DIPLAY FUNCTION
 
 
 function displayProduct(){
@@ -106,6 +106,7 @@ displayProduct()
 function deleteproduct(index){
     products.splice(index,1);
     displayProduct();
+    updateProductCount();
     localStorage.setItem("products",JSON.stringify(products));
 }; 
 
@@ -176,7 +177,92 @@ function hidesections(){
     overviewSection.style.display = "none";
     productSection.style.display = "none";
     orderSection.style.display = "none";
-}
-let productCount = document.getElementById("product-count");
-productCount.textContent = products.length
+};
 
+// PRODUCT COUNT........
+
+let productCount = document.getElementById("product-count");
+function updateProductCount(){
+    productCount.textContent = products.length
+}
+updateProductCount();
+
+// ORDER SECTION.......
+
+let  orders = JSON.parse(localStorage.getItem("orders")) || [];
+let orderCount = document.getElementById("order-count");
+
+function updateOrderCount(){
+    orderCount.textContent = orders.length;
+}
+updateOrderCount()
+
+// DIPLAYING ORDER........
+
+const orderContainer = document.getElementById("order-container");
+function displayOrders(){
+
+    orderContainer.innerHTML = "";
+
+    orders.forEach(function(order){
+
+        let itemsHTML = "";
+
+        let orderTotal = 0;
+
+        order.items.forEach(function(item){
+
+            itemsHTML += `
+                <p>
+                    ${item.quantity} × ${item.price}
+                </p>
+            `;
+
+            let price = Number(
+                String(item.price)
+                .replace("PRICE:", "")
+                .replace("₦", "")
+                .replace(/,/g, "")
+                .trim()
+            );
+
+            orderTotal += item.quantity * price;
+
+        });
+
+        let orderBox = document.createElement("div");
+        orderBox.className = "order-box";
+
+        orderBox.innerHTML = `
+            <h3>Customer: ${order.customer}</h3>
+            <p>Phone: ${order.phone}</p>
+
+            <h4>Products</h4>
+            ${itemsHTML}
+
+            <p>Total: ₦${orderTotal.toLocaleString()}</p>
+            <button class="delete-order" onclick="deleteOrder(${orders.indexOf(order)})">
+           Delete Order
+         </button>
+        `;
+        
+        orderContainer.appendChild(orderBox);
+
+    });
+}
+
+   
+
+
+        function deleteOrder(index){
+
+    orders.splice(index, 1);
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    displayOrders();
+
+    updateOrderCount();
+
+}
+ displayOrders();

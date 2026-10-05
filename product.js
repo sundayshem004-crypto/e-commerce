@@ -5,7 +5,9 @@ const cartBox = document.getElementById("cart-box");
 const cartItems = document.getElementById("cart-item");
 const closeCart = document.getElementById("close-cart");
 
-// let cart = [];
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+
 let savedCart = localStorage.getItem("cart");
    let cart;
    if (savedCart){
@@ -13,6 +15,8 @@ let savedCart = localStorage.getItem("cart");
    }else{
       cart = [];
    }
+
+
 let total = 0;
 
 buyButton.forEach(function(button){
@@ -116,7 +120,7 @@ const productContainer = document.querySelector(".hero-page");
 
     cart.forEach(function(item,index){
 
-         total += item.quantity*Number(item.price.replace('PRICE: ₦','').replace(',','')),
+         total += item.quantity*Number(String(item.price).replace('PRICE: ₦','').replace(',','')),
         cartItems.innerHTML += `
         <div class="cart-items">
         <img src="${item.Image}" alt='product'>
@@ -164,18 +168,31 @@ const productContainer = document.querySelector(".hero-page");
    let orderTotal = 0
    cart.forEach(function(item){
       orderMessage += `${item.quantity} * ${item.price}\n`;
-      orderTotal += item.quantity * Number(
-         item.price.replace('PRICE: ₦','').replace(/,/g,'')
-      );
+      orderTotal += item.quantity * Number(String(
+         item.price).replace('PRICE: ₦','').replace(/,/g,''))
+      ;
    });
    orderMessage += `\nTotal: ₦${orderTotal.toLocaleString()} `;
+   let order = {
+      customer: name,
+      phone:number,
+      items: cart,
+      total: orderTotal
+   };orders.push(order);
+
+
+orders.push(order);
+
+
+   localStorage.setItem("orders",JSON.stringify(orders));
     
    let whatsappNumber = "2348081950306";
    let whatsappURL = `http://wa.me/${whatsappNumber}?text=${encodeURI(orderMessage)}`;
    window.open(whatsappURL, "_blank");
+    
   let orderSuccess = document.getElementById("order-message");
   orderSuccess.textContent = "order ready! please check and forward message on whatsapp"
-  console.log(orderSuccess)
+ 
     
     });
    cartNotification();
@@ -183,7 +200,7 @@ const productContainer = document.querySelector(".hero-page");
  };
 
     displayCart();
-   //  console.log(cart);
+  
    
   
 
